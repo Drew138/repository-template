@@ -1,0 +1,20 @@
+---
+name: release
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build changelog
+        uses: https://github.com/mikepenz/release-changelog-builder-action@{latest-release}
+        with:
+          commitMode: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
